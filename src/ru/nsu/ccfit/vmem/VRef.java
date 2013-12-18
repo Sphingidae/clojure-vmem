@@ -19,7 +19,6 @@ public class VRef {
 
     private LinkedList<Revision> rHistory = new LinkedList<Revision>();
     private IFn mergeHandler;
-    private static AtomicInteger ticker = new AtomicInteger();
 
     public VRef(IFn mergeHandler) {
         this.mergeHandler = mergeHandler;
@@ -39,7 +38,7 @@ public class VRef {
         private final Object value;
 
         Revision(Object value) {
-            this.timePoint = ticker.incrementAndGet();
+            this.timePoint = Ticker.ticker.incrementAndGet();
             this.value = value;
         }
     }
