@@ -1,6 +1,7 @@
 package ru.nsu.ccfit.vmem;
 
 import org.junit.Assert;
+import org.junit.Test;
 import ru.nsu.ccfit.vmem.VRef;
 
 /**
@@ -21,5 +22,17 @@ public class VRefTest {
     public void testDeref() throws Exception {
         VRef ref = new VRef(null, new Integer(1));
         Assert.assertEquals(new Integer(1), ref.deref());
+    }
+
+    @Test
+    public void testAlter() throws Exception {
+        //TODO: test alter
+    }
+
+    @Test
+    public void testSet() throws Exception {
+        VRef ref = new VRef(null, new Integer(1));
+        ref.set(new Integer(2));
+        Assert.assertEquals(new Integer(2), ref.deref());
     }
 }

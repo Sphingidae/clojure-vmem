@@ -1,5 +1,9 @@
 package ru.nsu.ccfit.vmem;
 
+import clojure.lang.IFn;
+import clojure.lang.ISeq;
+import clojure.lang.RT;
+
 import java.util.LinkedList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -14,14 +18,14 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class VRef {
 
     private LinkedList<Revision> rHistory = new LinkedList<Revision>();
-    private Callable<Object> mergeHandler;
+    private IFn mergeHandler;
     private static AtomicInteger ticker = new AtomicInteger();
 
-    public VRef(Callable<Object> mergeHandler) {
+    public VRef(IFn mergeHandler) {
         this.mergeHandler = mergeHandler;
     }
 
-    public VRef(Callable<Object> mergeHandler, Object value) {
+    public VRef(IFn mergeHandler, Object value) {
         this.mergeHandler = mergeHandler;
         rHistory.add(new Revision(value));
     }
@@ -48,10 +52,19 @@ public class VRef {
      * @throws Exception
      */
     public Object merge(Revision parent, Revision pending) throws Exception {
-        return this.mergeHandler.call();
+        return this.mergeHandler.invoke(parent, pending, this.rHistory.getLast());
     }
 
     public Object deref() {
+        return this.rHistory.getLast().value;
+    }
+
+    public Object alter(IFn modifier, ISeq args) {
+        return this.set(modifier.applyTo(RT.cons(rHistory.getLast().value, args)));
+    }
+
+    public Object set(Object value) {
+        this.rHistory.add(new Revision(value));
         return this.rHistory.getLast().value;
     }
 
