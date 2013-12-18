@@ -4,6 +4,7 @@ import clojure.lang.IFn;
 import clojure.lang.ISeq;
 import clojure.lang.RT;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -55,16 +56,46 @@ public class VRef {
     }
 
     public Object deref() {
-        return this.rHistory.getLast().value;
+
+        VTransaction tr = VTransaction.getInstance();
+        if (!tr.isRunning()) {
+            return this.rHistory.getLast().value;
+        }
+        Object val = tr.inCache(this);
+        if (val != null) {
+            return val;
+        }
+        Revision r = this.findActualRevision(tr.getStartPoint());
+        if (r == null) {
+            return null;
+        }
+        return r.value;
     }
 
     public Object alter(IFn modifier, ISeq args) {
         return this.set(modifier.applyTo(RT.cons(rHistory.getLast().value, args)));
     }
 
-    public Object set(Object value) {
-        this.rHistory.add(new Revision(value));
-        return this.rHistory.getLast().value;
+    public Object set(Object value) throws IllegalStateException {
+        VTransaction tr = VTransaction.getInstance();
+        if (!tr.isRunning()) {
+            throw new IllegalStateException();
+        }
+        if (tr.getStatus() == VTransaction.COMMITTING) {
+            this.rHistory.add(new Revision(value));
+            return value;
+        }
+        return tr.updCache(this, value);
     }
 
+    private Revision findActualRevision(int startPoint) {
+        Iterator<Revision> it = this.rHistory.descendingIterator();
+        while (it.hasNext()) {
+            Revision r = it.next();
+            if (r.timePoint < startPoint) {
+                return r;
+            }
+        }
+        return null;
+    }
 }
