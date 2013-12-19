@@ -1,6 +1,6 @@
-(ns Vmem.core-test
+(ns ru.nsu.ccfit.vmem.clojure.data-structures-test
   (:use clojure.test
-        Vmem.core))
+        ru.nsu.ccfit.vmem.clojure.data-structures))
 
 ;(run-tests)
 

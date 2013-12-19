@@ -1,4 +1,4 @@
-(ns Vmem.core)
+(ns ru.nsu.ccfit.vmem.clojure.data-structures)
 
 ;;;;Structures
 
