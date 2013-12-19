@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.vmem;
+package ru.nsu.ccfit.vmem.core;
 
 import clojure.lang.IFn;
 import clojure.lang.ISeq;
@@ -6,8 +6,6 @@ import clojure.lang.RT;
 
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.concurrent.Callable;
-import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created with IntelliJ IDEA.

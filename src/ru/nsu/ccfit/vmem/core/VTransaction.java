@@ -1,10 +1,9 @@
-package ru.nsu.ccfit.vmem;
+package ru.nsu.ccfit.vmem.core;
 
 import clojure.lang.IFn;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**

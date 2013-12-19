@@ -1,9 +1,10 @@
-package ru.nsu.ccfit.vmem;
+package ru.nsu.ccfit.vmem.core;
 
 import clojure.lang.AFn;
 import org.junit.Assert;
 import org.junit.Test;
-import ru.nsu.ccfit.vmem.VRef;
+import ru.nsu.ccfit.vmem.core.VRef;
+import ru.nsu.ccfit.vmem.core.VTransaction;
 
 /**
  * Created with IntelliJ IDEA.

@@ -7,11 +7,12 @@
     <file path="/Ref.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387386817304" ignored="false" />
     <file path="/VTransaction.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387470538126" ignored="false" />
     <file path="/VRef.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387470466539" ignored="false" />
-    <file path="/fragment.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387431693093" ignored="false" />
+    <file path="/fragment.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387471208062" ignored="false" />
     <file path="/VRefTest.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387470955354" ignored="false" />
     <file path="/Dummy.txt" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387391658567" ignored="false" />
     <file path="/Ticker.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387393126074" ignored="false" />
     <file path="/VTransactionTest.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387395434324" ignored="false" />
+    <file path="/core.clj" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387473780338" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,51 +74,57 @@
   <component name="FileEditorManager">
     <leaf>
       <file leaf-file-name="VRef.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VRef.java">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/core/VRef.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="58" column="63" selection-start="1690" selection-end="1690" vertical-scroll-proportion="0.0">
+            <state line="79" column="50" selection-start="2171" selection-end="2171" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#483#493#0" expanded="true" />
+                <element signature="e#400#410#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="Ticker.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/Ticker.java">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/core/Ticker.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="10" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0">
+            <state line="12" column="10" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VRefTest.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/VRefTest.java">
+      <file leaf-file-name="VRefTest.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/core/VRefTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="28" selection-start="887" selection-end="887" vertical-scroll-proportion="0.54545456">
+            <state line="52" column="0" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="VTransaction.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VTransaction.java">
+      <file leaf-file-name="core.clj" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/clojure/core.clj">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="0" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="e#461#475#0" expanded="true" />
-                <element signature="e#617#631#0" expanded="true" />
-              </folding>
+            <state line="36" column="0" selection-start="950" selection-end="950" vertical-scroll-proportion="0.82954544">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="core.clj" pinned="false" current="false" current-in-tab="false">
+        <entry file="jar:///usr/share/java/clojure-1.4.jar!/clojure/core.clj">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4476" column="3" selection-start="142987" selection-end="142987" vertical-scroll-proportion="-6.6">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="VTransactionTest.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/VTransactionTest.java">
+        <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/core/VTransactionTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="21" selection-start="588" selection-end="588" vertical-scroll-proportion="0.0">
+            <state line="20" column="21" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -146,6 +153,8 @@
         <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VRef.java" />
         <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VTransaction.java" />
         <option value="$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/VRefTest.java" />
+        <option value="$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/core/VRefTest.java" />
+        <option value="$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/clojure/core.clj" />
       </list>
     </option>
   </component>
@@ -227,11 +236,59 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vmem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vmem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vmem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vmem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vmem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vmem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vmem" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="clojure" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -242,14 +299,14 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="last_opened_file_path" value="/usr/share/java" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.includeInheritedMembers" value="false" />
@@ -267,14 +324,35 @@
       <recent name="" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="ru.nsu.ccfit.vmem.core" />
       <recent name="ru.nsu.ccfit.vmem" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.tests">
+  <component name="RunManager" selected="Clojure Script.core">
+    <configuration default="false" name="core" type="ClojureScriptRunConfiguration" factoryName="Clojure Script" temporary="true">
+      <module name="vmem" />
+      <setting name="path" value="$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/clojure/core.clj" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/clojure" />
+      <setting name="repl" value="false" />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
+      <method />
+    </configuration>
+    <configuration default="true" type="ClojureScriptRunConfiguration" factoryName="Clojure Script">
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="" />
+      <setting name="repl" value="false" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -381,9 +459,16 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <list size="1">
+    <list size="2">
       <item index="0" class="java.lang.String" itemvalue="JUnit.tests" />
+      <item index="1" class="java.lang.String" itemvalue="Clojure Script.core" />
     </list>
+    <recent_temporary>
+      <list size="2">
+        <item index="0" class="java.lang.String" itemvalue="Clojure Script.core" />
+        <item index="1" class="java.lang.String" itemvalue="Clojure Script.core" />
+      </list>
+    </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
@@ -426,7 +511,7 @@
       <window_info id="Leiningen" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32714617" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -508,72 +593,86 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VRef.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/core/VRef.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#483#493#0" expanded="true" />
+            <element signature="e#400#410#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/VRefTest.java">
+    <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/core/VRefTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="25" column="0" selection-start="524" selection-end="524" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VTransaction.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/core/VTransaction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="32" column="33" selection-start="843" selection-end="843" vertical-scroll-proportion="0.0">
           <folding>
-            <element signature="e#461#475#0" expanded="true" />
-            <element signature="e#617#631#0" expanded="true" />
+            <element signature="e#422#436#0" expanded="true" />
+            <element signature="e#578#592#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/VTransactionTest.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/core/VTransaction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="21" selection-start="588" selection-end="588" vertical-scroll-proportion="0.0">
+        <state line="91" column="0" selection-start="2322" selection-end="2322" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="e#422#436#0" expanded="true" />
+            <element signature="e#578#592#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/core/VRef.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="79" column="50" selection-start="2171" selection-end="2171" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#400#410#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VTransaction.java">
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/core/Ticker.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="0" selection-start="2361" selection-end="2361" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#461#475#0" expanded="true" />
-            <element signature="e#617#631#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/Ticker.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="10" selection-start="265" selection-end="265" vertical-scroll-proportion="0.0">
+        <state line="12" column="10" selection-start="270" selection-end="270" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VRef.java">
+    <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/core/VRefTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="58" column="63" selection-start="1690" selection-end="1690" vertical-scroll-proportion="0.0">
+        <state line="52" column="0" selection-start="1321" selection-end="1321" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/core/VTransactionTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="21" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#483#493#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/ru/nsu/ccfit/vmem/VRefTest.java">
+    <entry file="jar:///usr/share/java/clojure-1.4.jar!/clojure/core.clj">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="28" selection-start="887" selection-end="887" vertical-scroll-proportion="0.54545456">
+        <state line="4476" column="3" selection-start="142987" selection-end="142987" vertical-scroll-proportion="-6.6">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/clojure/core.clj">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="0" selection-start="950" selection-end="950" vertical-scroll-proportion="0.82954544">
           <folding />
         </state>
       </provider>
@@ -630,12 +729,11 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>vmem</last-edited>
+          <last-edited>Clojure|vmem</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>

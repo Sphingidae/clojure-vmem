@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.vmem;
+package ru.nsu.ccfit.vmem.core;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
