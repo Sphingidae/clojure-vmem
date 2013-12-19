@@ -1,4 +1,4 @@
-package ru.nsu.ccfit.vmem.core.core;
+package ru.nsu.ccfit.vmem.core;
 
 import clojure.lang.IFn;
 
