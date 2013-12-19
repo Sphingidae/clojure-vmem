@@ -7,7 +7,7 @@
     <file path="/Ref.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387386817304" ignored="false" />
     <file path="/VTransaction.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387397926377" ignored="false" />
     <file path="/VRef.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387398103859" ignored="false" />
-    <file path="/fragment.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387393745090" ignored="false" />
+    <file path="/fragment.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387431693093" ignored="false" />
     <file path="/VRefTest.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387397557108" ignored="false" />
     <file path="/Dummy.txt" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387391658567" ignored="false" />
     <file path="/Ticker.java" changelist="e2369800-42c7-425a-82e8-53dc7667f860" time="1387393126074" ignored="false" />
@@ -75,7 +75,7 @@
       <file leaf-file-name="VRef.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VRef.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="25" selection-start="2534" selection-end="2534" vertical-scroll-proportion="0.77272725">
+            <state line="65" column="23" selection-start="1845" selection-end="1845" vertical-scroll-proportion="0.056818184">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#483#493#0" expanded="true" />
@@ -417,7 +417,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="0" width="1030" height="577" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="97" y="100" width="830" height="377" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -434,8 +434,8 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13496932" sideWeight="0.6728538" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32714617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13496932" sideWeight="0.6728538" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32714617" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32946634" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -570,7 +570,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ru/nsu/ccfit/vmem/VRef.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="25" selection-start="2534" selection-end="2534" vertical-scroll-proportion="0.77272725">
+        <state line="65" column="23" selection-start="1845" selection-end="1845" vertical-scroll-proportion="0.056818184">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#483#493#0" expanded="true" />
