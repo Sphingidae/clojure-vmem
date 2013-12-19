@@ -43,7 +43,7 @@ public class VTransaction {
         return tr;
     }
 
-    public static Object runInTransaction(IFn fn) {
+    public static Object runInTransaction(IFn fn) throws Exception {
         VTransaction tr = getInstance();
         if (tr.isRunning()) {
             return fn.invoke();
@@ -51,7 +51,7 @@ public class VTransaction {
         return tr.run(fn);
     }
 
-    public Object run(IFn fn) {
+    public Object run(IFn fn) throws Exception {
         try {
             this.startPoint = Ticker.ticker.incrementAndGet();
             this.status.set(RUNNING);
@@ -59,7 +59,7 @@ public class VTransaction {
             this.status.set(COMMITTING);
             //TODO: NORMAL MERGE! :'(
             for (Map.Entry<VRef, Object> entry: this.cache.entrySet()) {
-                entry.getKey().set(entry.getValue());
+                entry.getKey().merge(entry.getValue());
             }
             return result;
         }

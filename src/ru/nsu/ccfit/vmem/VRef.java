@@ -46,13 +46,20 @@ public class VRef {
 
     /**
      * Merge handler trigger.
-     * @param parent - common parent for the last revision in local history and pending revision.
      * @param pending - revision that needs to be merged with the last local revision.
      * @return returns a result of merge produced by merge handler.
      * @throws Exception
      */
-    public Object merge(Revision parent, Revision pending) throws Exception {
-        return this.mergeHandler.invoke(parent, pending, this.rHistory.getLast());
+    public Object merge(Object pending) throws Exception {
+        Revision parent = this.findActualRevision(VTransaction.getInstance().getStartPoint());
+        Object result;
+        if (parent == null) {
+            result = this.mergeHandler.invoke(null, pending, this.rHistory.getLast());
+        } else {
+            result = this.mergeHandler.invoke(parent.value, pending, this.rHistory.getLast());
+        }
+
+        return this.set(result);
     }
 
     public Object deref() {

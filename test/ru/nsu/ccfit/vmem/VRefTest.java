@@ -32,7 +32,12 @@ public class VRefTest {
 
     @Test
     public void testSet() throws Exception {
-        final VRef ref = new VRef(null, new Integer(1));
+        final VRef ref = new VRef(new AFn() {
+            @Override
+            public Object invoke(Object arg1, Object arg2, Object arg3) {
+                return arg2;
+            }
+        }, new Integer(1));
         VTransaction.runInTransaction(new AFn() {
             @Override
             public Object invoke() {
