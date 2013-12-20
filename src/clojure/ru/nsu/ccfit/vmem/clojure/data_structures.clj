@@ -1,4 +1,4 @@
-(ns ru.nsu.ccfit.vmem.clojure.data-structures)
+(ns Vmem.core)
 
 ;;;;Structures
 
@@ -296,3 +296,55 @@
   (let [revlist (reverse (into '() (java.util.LinkedList. revisions)))
         vqueue (to-version-queue (first revlist))]
     (rev-to-vqueue1 (first revlist) (rest revlist) vqueue)))
+
+;;; User Merge Conflict API
+
+;Rules for set
+
+(defn join-set-user-rule1[[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Syncronize version sets and make one set from them by user rules"
+  ;if set1 had added elements, and set2 doesn't changed
+  (if (and (empty? removed1) added1 (empty? removed2) (empty? added2) )
+    ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+
+(defn join-set-user-rule2[[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Syncronize version sets and make one set from them by user rules"
+  ;if set1 had removed elements, and set2 doesn't changed
+  (if (and removed1 (empty? added1) (empty? removed2) (empty? added2) )
+    ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+
+(defn join-set-user-rule3[[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Syncronize version sets and make one set from them by user rules"
+  ;if set1 had added elements, and set2 had added elements
+  (if (and (empty? removed1) added1 (empty? removed2) added2)
+    ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+
+(defn join-set-user-rule4[[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Syncronize version sets and make one set from them by user rules"
+  ;if set1 had removed elements, and set2 had removed elements
+  (if (and removed1 (empty? added1) removed2 (empty? added2))
+    ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+
+(defn join-set-user-rule5[[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Syncronize version sets and make one set from them by user rules"
+  ;if set1 had added elements, and set2 had removed elements
+  (if (and (empty? removed1) added1 removed2 (empty? added2))
+    ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+
+(defn join-set-user-rule6[[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Syncronize version sets and make one set from them by user rules"
+  ;if set1 had both added and removed elements, and set2 had both added and removed elements
+  (if (and removed1 added1 removed2 added2)
+    ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
