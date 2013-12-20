@@ -50,8 +50,11 @@ public class VRef {
      */
     public Object merge(LinkedList<Object> pending) throws Exception {
         Revision parent = this.findActualRevision(VTransaction.getInstance().getStartPoint());
-        Object result = this.mergeHandler.invoke(this.getLinkedList(parent), pending);
-        return this.set(result);
+        if (!parent.equals(this.rHistory.getLast())) {
+            Object result = this.mergeHandler.invoke(this.getLinkedList(parent), pending);
+            return this.set(result);
+        }
+        return this.set(pending.getLast());
     }
 
     private LinkedList<Object> getLinkedList(Object parent) {
