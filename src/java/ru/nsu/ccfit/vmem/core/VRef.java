@@ -50,20 +50,33 @@ public class VRef {
      */
     public Object merge(LinkedList<Object> pending) throws Exception {
         Revision parent = this.findActualRevision(VTransaction.getInstance().getStartPoint());
-        Object result;
-        if (parent == null) {
-            result = this.mergeHandler.invoke(null, pending, this.getLinkedList());
-        } else {
-            result = this.mergeHandler.invoke(parent.value, pending, this.getLinkedList());
-        }
-
+        Object result = this.mergeHandler.invoke(this.getLinkedList(parent), pending);
         return this.set(result);
     }
 
-    private LinkedList<Object> getLinkedList() {
+    private LinkedList<Object> getLinkedList(Object parent) {
         LinkedList<Object> result = new LinkedList<Object>();
-        for (Iterator it = this.rHistory.iterator(); it.hasNext();) {
-            result.add(it.next());
+        Object tmp;
+        if (parent == null) {
+            for (Iterator<Revision> it = this.rHistory.iterator(); it.hasNext();) {
+
+                result.add(it.next().value);
+            }
+            return result;
+        }
+        //а если parent не было, а потом случайно появился?
+
+        Iterator<Revision> it = this.rHistory.iterator();
+        while (it.hasNext()) {
+            tmp = it.next().value;
+            if (tmp.equals(parent)) {
+                result.add(tmp);
+                break;
+            }
+        }
+
+        while (it.hasNext()) {
+            result.add(it.next().value);
         }
         return result;
     }
