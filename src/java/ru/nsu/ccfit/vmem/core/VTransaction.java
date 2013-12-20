@@ -3,6 +3,7 @@ package ru.nsu.ccfit.vmem.core;
 import clojure.lang.IFn;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -19,7 +20,7 @@ public class VTransaction {
     private AtomicInteger status = new AtomicInteger();
     private int startPoint;
 
-    private HashMap<VRef, Object> cache = new HashMap<VRef, Object>();
+    private HashMap<VRef, LinkedList<Object>> cache = new HashMap<VRef, LinkedList<Object>>();
 
     public static final int RUNNING = 1;
     public static final int COMMITTING = 2;
@@ -56,8 +57,7 @@ public class VTransaction {
             this.status.set(RUNNING);
             Object result = fn.invoke();
             this.status.set(COMMITTING);
-            //TODO: NORMAL MERGE! :'(
-            for (Map.Entry<VRef, Object> entry: this.cache.entrySet()) {
+            for (Map.Entry<VRef, LinkedList<Object>> entry: this.cache.entrySet()) {
                 entry.getKey().merge(entry.getValue());
             }
             return result;
@@ -77,7 +77,13 @@ public class VTransaction {
     }
 
     public Object updCache(VRef ref, Object value) {
-        this.cache.put(ref, value);
+        if (this.cache.get(ref) == null) {
+            LinkedList<Object> ll = new LinkedList<Object>();
+            ll.add(value);
+            this.cache.put(ref, ll);
+            return value;
+        }
+        this.cache.get(ref).add(value);
         return value;
     }
 

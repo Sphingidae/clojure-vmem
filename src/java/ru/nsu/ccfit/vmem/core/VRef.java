@@ -48,16 +48,24 @@ public class VRef {
      * @return returns a result of merge produced by merge handler.
      * @throws Exception
      */
-    public Object merge(Object pending) throws Exception {
+    public Object merge(LinkedList<Object> pending) throws Exception {
         Revision parent = this.findActualRevision(VTransaction.getInstance().getStartPoint());
         Object result;
         if (parent == null) {
-            result = this.mergeHandler.invoke(null, pending, this.rHistory.getLast());
+            result = this.mergeHandler.invoke(null, pending, this.getLinkedList());
         } else {
-            result = this.mergeHandler.invoke(parent.value, pending, this.rHistory.getLast());
+            result = this.mergeHandler.invoke(parent.value, pending, this.getLinkedList());
         }
 
         return this.set(result);
+    }
+
+    private LinkedList<Object> getLinkedList() {
+        LinkedList<Object> result = new LinkedList<Object>();
+        for (Iterator it = this.rHistory.iterator(); it.hasNext();) {
+            result.add(it.next());
+        }
+        return result;
     }
 
     public Object deref() {
