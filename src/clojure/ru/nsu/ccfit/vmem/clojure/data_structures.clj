@@ -1,4 +1,4 @@
-(ns Vmem.core)
+(ns ru.nsu.ccfit.vmem.clojure.data-structures)
 
 ;;;;Structures
 
@@ -299,52 +299,194 @@
 
 ;;; User Merge Conflict API
 
-;Rules for set
+;;;Rules for set
 
-(defn join-set-user-rule1[[elems1 added1 removed1] [elems2 added2 removed2]]
+(defn join-set-user-added-none-conflict [[elems1 added1 removed1] [elems2 added2 removed2]]
   "Syncronize version sets and make one set from them by user rules"
   ;if set1 had added elements, and set2 doesn't changed
-  (if (and (empty? removed1) added1 (empty? removed2) (empty? added2) )
-    ;;Realise your strategy here
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+  ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2]))    
 
-(defn join-set-user-rule2[[elems1 added1 removed1] [elems2 added2 removed2]]
+(defn join-set-user-removed-none-conflict [[elems1 added1 removed1] [elems2 added2 removed2]]
   "Syncronize version sets and make one set from them by user rules"
   ;if set1 had removed elements, and set2 doesn't changed
-  (if (and removed1 (empty? added1) (empty? removed2) (empty? added2) )
-    ;;Realise your strategy here
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+  ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2]))
 
-(defn join-set-user-rule3[[elems1 added1 removed1] [elems2 added2 removed2]]
+(defn join-set-user-addrem-none-conflict [[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Syncronize version sets and make one set from them by user rules"
+  ;if set1 had added and removed elements, and set2 doesn't changed
+  ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2]))
+
+(defn join-set-user-added-added-conflict [[elems1 added1 removed1] [elems2 added2 removed2]]
   "Syncronize version sets and make one set from them by user rules"
   ;if set1 had added elements, and set2 had added elements
-  (if (and (empty? removed1) added1 (empty? removed2) added2)
     ;;Realise your strategy here
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2]))
 
-(defn join-set-user-rule4[[elems1 added1 removed1] [elems2 added2 removed2]]
+(defn join-set-user-removed-removed-conflict [[elems1 added1 removed1] [elems2 added2 removed2]]
   "Syncronize version sets and make one set from them by user rules"
   ;if set1 had removed elements, and set2 had removed elements
-  (if (and removed1 (empty? added1) removed2 (empty? added2))
     ;;Realise your strategy here
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2]))
 
-(defn join-set-user-rule5[[elems1 added1 removed1] [elems2 added2 removed2]]
+(defn join-set-user-added-removed-conflict [[elems1 added1 removed1] [elems2 added2 removed2]]
   "Syncronize version sets and make one set from them by user rules"
   ;if set1 had added elements, and set2 had removed elements
-  (if (and (empty? removed1) added1 removed2 (empty? added2))
-    ;;Realise your strategy here
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+  ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2]))
 
-(defn join-set-user-rule6[[elems1 added1 removed1] [elems2 added2 removed2]]
+(defn join-set-user-addrem-addrem-conflict[[elems1 added1 removed1] [elems2 added2 removed2]]
   "Syncronize version sets and make one set from them by user rules"
   ;if set1 had both added and removed elements, and set2 had both added and removed elements
-  (if (and removed1 added1 removed2 added2)
+  ;;Realise your strategy here
+    (join-set [elems1 added1 removed1] [elems2 added2 removed2]))
+
+;;;Rules for stack
+
+(defn join-stack-user-pushed-none-conflict [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Syncronize version stacks and make one stack from them by user rules"
+  ;if stack1 had pushed elements, and stack2 doesn't changed
+  ;;Realise your strategy here
+    (join-stack [elems1 pushed1 popnum1] [elems2 pushed2 popnum2]))    
+
+(defn join-stack-user-poped-none-conflict [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Syncronize version stacks and make one stack from them by user rules"
+  ;if stack1 had poped elements, and stack2 doesn't changed
+  ;;Realise your strategy here
+    (join-stack [elems1 pushed1 popnum1] [elems2 pushed2 popnum2]))
+
+(defn join-stack-user-pushpop-none-conflict [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Syncronize version stacks and make one stack from them by user rules"
+  ;if stack1 had pushed and poped elements, and stack2 doesn't changed
+  ;;Realise your strategy here
+    (join-stack [elems1 pushed1 popnum1] [elems2 pushed2 popnum2]))
+
+(defn join-stack-user-pushed-pushed-conflict [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Syncronize version stacks and make one stack from them by user rules"
+  ;if stack1 had pushed elements, and stack2 had pushed elements
     ;;Realise your strategy here
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])
-    (join-set [elems1 added1 removed1] [elems2 added2 removed2])))
+    (join-stack [elems1 pushed1 popnum1] [elems2 pushed2 popnum2]))
+
+(defn join-stack-user-poped-poped-conflict [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Syncronize version stacks and make one stack from them by user rules"
+  ;if stack1 had poped elements, and set2 had poped elements
+    ;;Realise your strategy here
+    (join-stack [elems1 pushed1 popnum1] [elems2 pushed2 popnum2]))
+
+(defn join-stack-user-pushed-poped-conflict [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Syncronize version stackss and make one stack from them by user rules"
+  ;if stack1 had pushed elements, and set2 had poped elements
+  ;;Realise your strategy here
+    (join-stack [elems1 pushed1 popnum1] [elems2 pushed2 popnum2]))
+
+(defn join-stack-user-pushpop-pushpop-conflict [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Syncronize version stacks and make one stack from them by user rules"
+  ;if stack1 had both pushed and poped elements, and stack2 had both pushed and poped elements
+  ;;Realise your strategy here
+    (join-stack [elems1 pushed1 popnum1] [elems2 pushed2 popnum2]))
+
+;;;Rules for queue
+(defn join-queue-user-added-none-conflict [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Syncronize version queues and make one queue from them by user rules"
+  ;if queue1 had added elements, and queue2 doesn't changed
+  ;;Realise your strategy here
+    (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))    
+
+(defn join-queue-user-removed-none-conflict [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Syncronize version queues and make one queue from them by user rules"
+  ;if queue1 had removed elements, and queue2 doesn't changed
+  ;;Realise your strategy here
+    (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))
+
+(defn join-queue-user-addrem-none-conflict [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Syncronize version queues and make one queue from them by user rules"
+  ;if queue1 had added and removed elements, and queue2 doesn't changed
+  ;;Realise your strategy here
+    (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))
+
+(defn join-queue-user-added-added-conflict [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Syncronize version queues and make one queue from them by user rules"
+  ;if queue1 had added elements, and queue2 had added elements
+    ;;Realise your strategy here
+    (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))
+
+(defn join-queue-user-removed-removed-conflict [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Syncronize version queues and make one queue from them by user rules"
+  ;if queue1 had removed elements, and queue2 had removed elements
+    ;;Realise your strategy here
+    (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))
+
+(defn join-queue-user-added-removed-conflict [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Syncronize version queues and make one queue from them by user rules"
+  ;if queue1 had added elements, and set2 had removed elements
+  ;;Realise your strategy here
+    (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))
+
+(defn join-queue-user-addrem-addrem-conflict [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Syncronize version queues and make one queue from them by user rules"
+  ;if queue1 had both added and removed elements, and queue2 had both added and removed elements
+  ;;Realise your strategy here
+    (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))
+
+
+;;;Automatic conflict strategy analizer for sets
+(defn join-set-conflict-analizer [[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Analize conflicts between two version sets and choose the right strategy"
+  (if (and (empty? removed1) added1 (empty? removed2) (empty? added2)) 
+    (join-set-user-added-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+    (if (and removed1 (empty? added1) (empty? removed2) (empty? added2))
+      (join-set-user-removed-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+      (if (and removed1 added1 (empty? removed2) (empty? added2))
+        (join-set-user-addrem-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+        (if (and (empty? removed1) added1 (empty? removed2) added2)
+          (join-set-user-added-added-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+          (if (and removed1 (empty? added1) removed2 (empty? added2))
+            (join-set-user-removed-removed-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+            (if (and (empty? removed1) added1 removed2 (empty? added2))
+              (join-set-user-added-removed-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+              (if (and removed1 added1 removed2 added2)
+                (join-set-user-addrem-addrem-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+                ;;if nothing equal, let's switch the arguments
+                (join-set-conflict-analizer [elems2 added2 removed2] [elems1 added1 removed1])))))))))
+
+;;;Automatic conflict strategy analizer for stacks
+(defn join-stack-conflict-analizer [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Analize conflicts between two version stacks and choose the right strategy"
+    (if (and (= popnum1 0) pushed1 (= popnum2 0) (empty? pushed2)) 
+    (join-stack-user-pushed-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+    (if (and (> popnum1 0) (empty? pushed1) (= popnum2 0) (empty? pushed2))
+      (join-stack-user-poped-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+      (if (and (> popnum1 0) pushed1 (= popnum2 0) (empty? pushed2))
+        (join-stack-user-pushpop-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+        (if (and (= popnum1 0) pushed1 (= popnum2 0) pushed2)
+          (join-stack-user-pushed-pushed-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+          (if (and (> popnum1 0) (empty? pushed1) (> popnum2 0) (empty? pushed2))
+            (join-stack-user-poped-poped-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+            (if (and (= popnum1 0) pushed1 (> popnum2 0) (empty? pushed2))
+              (join-stack-user-pushed-poped-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+              (if (and (> popnum1 0) pushed1 (> popnum2 0) pushed2)
+                (join-stack-user-pushpop-pushpop-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+                ;;if nothing equal, let's switch the arguments
+                (join-stack-conflict-analizer [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])))))))))
+
+;;;;Automatic conflict strategy analizer for queues
+(defn join-queue-conflict-analizer [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Analize conflicts between two version queues and choose the right strategy"
+  (if (and (= remnum1 0) added1 (= remnum2 0) (empty? added2)) 
+    (join-queue-user-added-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+    (if (and (> remnum1 0) (empty? added1) (= remnum2 0) (empty? added2))
+      (join-queue-user-removed-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+      (if (and (> remnum1 0) added1 (= remnum2 0) (empty? added2))
+        (join-queue-user-addrem-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+        (if (and (= remnum1 0) added1 (= remnum2 0) added2)
+          (join-queue-user-added-added-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+          (if (and (> remnum1 0) (empty? added1) (> remnum2 0) (empty? added2))
+            (join-queue-user-removed-removed-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+            (if (and (= remnum1 0) added1 (> remnum2 0) (empty? added2))
+              (join-queue-user-added-removed-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+              (if (and (> remnum1 0) added1 (> remnum2 0) added2)
+                (join-queue-user-addrem-addrem-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+                ;;if nothing equal, let's switch the arguments
+                (join-queue-conflict-analizer [elems1 added1 remnum1] [elems2 added2 remnum2])))))))))
