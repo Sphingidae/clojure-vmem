@@ -16,8 +16,8 @@ import java.util.LinkedList;
  */
 public class VRef {
 
-    private LinkedList<Revision> rHistory = new LinkedList<Revision>();
-    private IFn mergeHandler;
+    private final LinkedList<Revision> rHistory = new LinkedList<Revision>();
+    private final IFn mergeHandler;
 
     public VRef(IFn mergeHandler) {
         this.mergeHandler = mergeHandler;
@@ -50,9 +50,11 @@ public class VRef {
      */
     public Object merge(LinkedList<Object> pending) throws Exception {
         Revision parent = this.findActualRevision(VTransaction.getInstance().getStartPoint());
-        if (!parent.equals(this.rHistory.getLast())) {
-            Object result = this.mergeHandler.invoke(this.getLinkedList(parent), pending);
-            return this.set(result);
+        synchronized (this.rHistory) {
+            if (!parent.equals(this.rHistory.getLast())) {
+                Object result = this.mergeHandler.invoke(this.getLinkedList(parent), pending);
+                return this.set(result);
+            }
         }
         return this.set(pending.getLast());
     }
@@ -61,25 +63,29 @@ public class VRef {
         LinkedList<Object> result = new LinkedList<Object>();
         Object tmp;
         if (parent == null) {
-            for (Iterator<Revision> it = this.rHistory.iterator(); it.hasNext();) {
+            synchronized (this.rHistory) {
+                for (Iterator<Revision> it = this.rHistory.iterator(); it.hasNext();) {
 
-                result.add(it.next().value);
+                    result.add(it.next().value);
+                }
             }
             return result;
         }
         //а если parent не было, а потом случайно появился?
 
-        Iterator<Revision> it = this.rHistory.iterator();
-        while (it.hasNext()) {
-            tmp = it.next().value;
-            if (tmp.equals(parent)) {
-                result.add(tmp);
-                break;
+        synchronized (this.rHistory) {
+            Iterator<Revision> it = this.rHistory.iterator();
+            while (it.hasNext()) {
+                tmp = it.next().value;
+                if (tmp.equals(parent)) {
+                    result.add(tmp);
+                    break;
+                }
             }
-        }
 
-        while (it.hasNext()) {
-            result.add(it.next().value);
+            while (it.hasNext()) {
+                result.add(it.next().value);
+            }
         }
         return result;
     }
@@ -88,7 +94,9 @@ public class VRef {
 
         VTransaction tr = VTransaction.getInstance();
         if (!tr.isRunning()) {
-            return this.rHistory.getLast().value;
+            synchronized (this.rHistory) {
+                return this.rHistory.getLast().value;
+            }
         }
         Object val = tr.inCache(this);
         if (val != null) {
@@ -102,7 +110,13 @@ public class VRef {
     }
 
     public Object alter(IFn modifier, ISeq args) {
-        return this.set(modifier.applyTo(RT.cons(rHistory.getLast().value, args)));
+
+        Object value;
+        synchronized (this.rHistory) {
+            value = rHistory.getLast().value;
+        }
+
+        return this.set(modifier.applyTo(RT.cons(value, args)));
     }
 
     public Object set(Object value) throws IllegalStateException {
@@ -111,18 +125,22 @@ public class VRef {
             throw new IllegalStateException();
         }
         if (tr.getStatus() == VTransaction.COMMITTING) {
-            this.rHistory.add(new Revision(value));
+            synchronized (this.rHistory) {
+                this.rHistory.add(new Revision(value));
+            }
             return value;
         }
         return tr.updCache(this, value);
     }
 
     private Revision findActualRevision(int startPoint) {
-        Iterator<Revision> it = this.rHistory.descendingIterator();
-        while (it.hasNext()) {
-            Revision r = it.next();
-            if (r.timePoint < startPoint) {
-                return r;
+        synchronized (this.rHistory) {
+            Iterator<Revision> it = this.rHistory.descendingIterator();
+            while (it.hasNext()) {
+                Revision r = it.next();
+                if (r.timePoint < startPoint) {
+                    return r;
+                }
             }
         }
         return null;
