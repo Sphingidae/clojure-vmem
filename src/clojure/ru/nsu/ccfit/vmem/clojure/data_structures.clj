@@ -431,62 +431,65 @@
     (join-queue [elems1 added1 remnum1] [elems2 added2 remnum2]))
 
 
-;;;Automatic conflict strategy analizer for sets
-(defn join-set-conflict-analizer [[elems1 added1 removed1] [elems2 added2 removed2]]
-  "Analize conflicts between two version sets and choose the right strategy"
-  (if (and (empty? removed1) added1 (empty? removed2) (empty? added2)) 
+;;;Automatic conflict strategy analyzer for sets
+(defn join-set-conflict-analyzer [[elems1 added1 removed1] [elems2 added2 removed2]]
+  "Analyze conflicts between two version sets and choose the right strategy"
+  (cond
+    (and (empty? removed1) added1 (empty? removed2) (empty? added2)) 
     (join-set-user-added-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
-    (if (and removed1 (empty? added1) (empty? removed2) (empty? added2))
-      (join-set-user-removed-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
-      (if (and removed1 added1 (empty? removed2) (empty? added2))
-        (join-set-user-addrem-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
-        (if (and (empty? removed1) added1 (empty? removed2) added2)
-          (join-set-user-added-added-conflict [elems1 added1 removed1] [elems2 added2 removed2])
-          (if (and removed1 (empty? added1) removed2 (empty? added2))
-            (join-set-user-removed-removed-conflict [elems1 added1 removed1] [elems2 added2 removed2])
-            (if (and (empty? removed1) added1 removed2 (empty? added2))
-              (join-set-user-added-removed-conflict [elems1 added1 removed1] [elems2 added2 removed2])
-              (if (and removed1 added1 removed2 added2)
-                (join-set-user-addrem-addrem-conflict [elems1 added1 removed1] [elems2 added2 removed2])
-                ;;if nothing equal, let's switch the arguments
-                (join-set-conflict-analizer [elems2 added2 removed2] [elems1 added1 removed1])))))))))
+    (and removed1 (empty? added1) (empty? removed2) (empty? added2))
+    (join-set-user-removed-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+    (and removed1 added1 (empty? removed2) (empty? added2))
+    (join-set-user-addrem-none-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+    (and (empty? removed1) added1 (empty? removed2) added2)
+    (join-set-user-added-added-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+    (and removed1 (empty? added1) removed2 (empty? added2))
+    (join-set-user-removed-removed-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+    (and (empty? removed1) added1 removed2 (empty? added2))
+    (join-set-user-added-removed-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+    (and removed1 added1 removed2 added2)
+    (join-set-user-addrem-addrem-conflict [elems1 added1 removed1] [elems2 added2 removed2])
+     ;;if nothing equal, let's switch the arguments
+    :else (join-set-conflict-analyzer [elems2 added2 removed2] [elems1 added1 removed1])))
 
-;;;Automatic conflict strategy analizer for stacks
-(defn join-stack-conflict-analizer [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
-  "Analize conflicts between two version stacks and choose the right strategy"
-    (if (and (= popnum1 0) pushed1 (= popnum2 0) (empty? pushed2)) 
+;;;Automatic conflict strategy analyzer for stacks
+(defn join-stack-conflict-analyzer [[elems1 pushed1 popnum1] [elems2 pushed2 popnum2]]
+  "Analyze conflicts between two version stacks and choose the right strategy"
+  (cond
+    (and (= popnum1 0) pushed1 (= popnum2 0) (empty? pushed2)) 
     (join-stack-user-pushed-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
-    (if (and (> popnum1 0) (empty? pushed1) (= popnum2 0) (empty? pushed2))
-      (join-stack-user-poped-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
-      (if (and (> popnum1 0) pushed1 (= popnum2 0) (empty? pushed2))
-        (join-stack-user-pushpop-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
-        (if (and (= popnum1 0) pushed1 (= popnum2 0) pushed2)
-          (join-stack-user-pushed-pushed-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
-          (if (and (> popnum1 0) (empty? pushed1) (> popnum2 0) (empty? pushed2))
-            (join-stack-user-poped-poped-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
-            (if (and (= popnum1 0) pushed1 (> popnum2 0) (empty? pushed2))
-              (join-stack-user-pushed-poped-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
-              (if (and (> popnum1 0) pushed1 (> popnum2 0) pushed2)
-                (join-stack-user-pushpop-pushpop-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
-                ;;if nothing equal, let's switch the arguments
-                (join-stack-conflict-analizer [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])))))))))
+    (and (> popnum1 0) (empty? pushed1) (= popnum2 0) (empty? pushed2))
+    (join-stack-user-poped-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+    (and (> popnum1 0) pushed1 (= popnum2 0) (empty? pushed2))
+    (join-stack-user-pushpop-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+    (and (= popnum1 0) pushed1 (= popnum2 0) pushed2)
+    (join-stack-user-pushed-pushed-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+    (and (> popnum1 0) (empty? pushed1) (> popnum2 0) (empty? pushed2))
+    (join-stack-user-poped-poped-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+    (and (= popnum1 0) pushed1 (> popnum2 0) (empty? pushed2))
+    (join-stack-user-pushed-poped-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+    (and (> popnum1 0) pushed1 (> popnum2 0) pushed2)
+    (join-stack-user-pushpop-pushpop-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
+    ;;if nothing equal, let's switch the arguments
+    :else (join-stack-conflict-analyzer [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])))
 
-;;;;Automatic conflict strategy analizer for queues
-(defn join-queue-conflict-analizer [[elems1 added1 remnum1] [elems2 added2 remnum2]]
-  "Analize conflicts between two version queues and choose the right strategy"
-  (if (and (= remnum1 0) added1 (= remnum2 0) (empty? added2)) 
+;;;;Automatic conflict strategy analyzer for queues
+(defn join-queue-conflict-analyzer [[elems1 added1 remnum1] [elems2 added2 remnum2]]
+  "Analyze conflicts between two version queues and choose the right strategy"
+  (cond
+    (and (= remnum1 0) added1 (= remnum2 0) (empty? added2)) 
     (join-queue-user-added-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
-    (if (and (> remnum1 0) (empty? added1) (= remnum2 0) (empty? added2))
-      (join-queue-user-removed-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
-      (if (and (> remnum1 0) added1 (= remnum2 0) (empty? added2))
-        (join-queue-user-addrem-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
-        (if (and (= remnum1 0) added1 (= remnum2 0) added2)
-          (join-queue-user-added-added-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
-          (if (and (> remnum1 0) (empty? added1) (> remnum2 0) (empty? added2))
-            (join-queue-user-removed-removed-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
-            (if (and (= remnum1 0) added1 (> remnum2 0) (empty? added2))
-              (join-queue-user-added-removed-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
-              (if (and (> remnum1 0) added1 (> remnum2 0) added2)
-                (join-queue-user-addrem-addrem-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
-                ;;if nothing equal, let's switch the arguments
-                (join-queue-conflict-analizer [elems1 added1 remnum1] [elems2 added2 remnum2])))))))))
+    (and (> remnum1 0) (empty? added1) (= remnum2 0) (empty? added2))
+    (join-queue-user-removed-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+    (and (> remnum1 0) added1 (= remnum2 0) (empty? added2))
+    (join-queue-user-addrem-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+    (and (= remnum1 0) added1 (= remnum2 0) added2)
+    (join-queue-user-added-added-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+    (and (> remnum1 0) (empty? added1) (> remnum2 0) (empty? added2))
+    (join-queue-user-removed-removed-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+    (and (= remnum1 0) added1 (> remnum2 0) (empty? added2))
+    (join-queue-user-added-removed-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+    (and (> remnum1 0) added1 (> remnum2 0) added2)
+    (join-queue-user-addrem-addrem-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
+     ;;if nothing equal, let's switch the arguments
+    :else (join-queue-conflict-analyzer [elems1 added1 remnum1] [elems2 added2 remnum2])))
