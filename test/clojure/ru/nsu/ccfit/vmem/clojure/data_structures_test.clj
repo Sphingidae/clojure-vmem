@@ -1,5 +1,6 @@
 (ns ru.nsu.ccfit.vmem.clojure.data-structures-test
   (:use clojure.test
+        ru.nsu.ccfit.vmem.clojure.base-data-structures
         ru.nsu.ccfit.vmem.clojure.data-structures))
 
 ;(run-tests)
