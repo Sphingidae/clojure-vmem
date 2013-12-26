@@ -45,12 +45,13 @@
    join-stack-user-pushpop-none-conflict
    join-stack-user-pushed-pushed-conflict
    join-stack-user-poped-poped-conflict
+   join-stack-user-pushed-poped-conflict
    join-stack-user-pushpop-pushpop-conflict]
 
   (fn [committed pending]
     "Analyze conflicts between two version stacks and choose the right strategy"
-    (let [[elems1 added1 removed1] (rev-to-vset committed)
-          [elems2 added2 removed2] (rev-to-vset pending)]
+    (let [[elems1 pushed1 popnum1] (rev-to-vset committed)
+          [elems2 pushed2 popnum2] (rev-to-vset pending)]
       (cond
         (and (= popnum1 0) pushed1 (= popnum2 0) (empty? pushed2))
         (join-stack-user-pushed-none-conflict [elems1 pushed1 popnum1] [elems2 pushed2 popnum2])
@@ -85,8 +86,8 @@
 
   (fn[committed pending]
     "Analyze conflicts between two version queues and choose the right strategy"
-    (let [[elems1 added1 removed1] (rev-to-vset committed)
-          [elems2 added2 removed2] (rev-to-vset pending)]
+    (let [[elems1 added1 remnum1] (rev-to-vset committed)
+          [elems2 added2 remnum2] (rev-to-vset pending)]
       (cond
         (and (= remnum1 0) added1 (= remnum2 0) (empty? added2))
         (join-queue-user-added-none-conflict [elems1 added1 remnum1] [elems2 added2 remnum2])
@@ -105,5 +106,3 @@
         ;;if nothing equal, let's switch the arguments
         :else (recur pending committed)))
     ))
-
-
